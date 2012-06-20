@@ -1,0 +1,6 @@
+<?php // Model
+
+class riftObject {
+
+
+} ?>
