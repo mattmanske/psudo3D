@@ -1,5 +1,11 @@
 <?php // HTML Setup
 
+	function print_nice($val){
+		echo '<pre>';
+		print_r($val);
+		echo '</pre>';
+	}
+
 	include_once('objectModel.php');
 	include_once('modelController.php');
 
@@ -11,13 +17,11 @@
 		<title>3D Modeler</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="handler.css" />
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-		<script src="script.js" type="text/javascript"></script>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+		<script type="text/javascript" src="script.js" ></script>
 	</head>
 	<body>
 		<h1>3D Modeler</h1>
-		<div id="stage">
-			<?php include_once('stage.php'); ?>
-		</div>
+		<?php include_once('stage.php'); ?>
 	</body>
 </html>

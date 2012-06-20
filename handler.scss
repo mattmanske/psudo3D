@@ -1,0 +1,32 @@
+body {
+	text-align: center;
+	margin: auto;
+}
+
+/* Stage/Grid Setup */
+
+#stage {
+	position: relative;
+	margin: auto;
+}
+
+#set {
+	position: relative;
+}
+
+.griddot {
+	position: absolute;
+	background-color: rgba(0,0,0,0.33);
+	width: 2px;
+	height: 2px;
+	border-radius: 3px;
+}
+
+.piecedot {
+	background-color: red;
+	width: 4px;
+	height: 4px;
+	border-radius: 3px;
+	margin-left: -1px;
+	margin-top: -1px;
+}

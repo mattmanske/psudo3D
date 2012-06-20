@@ -1,7 +1,10 @@
 <?php // Stage Setup
 	$model = new riftObject();
-	$controller = new riftController();
+	$cntrl = new riftController(4, 30);
 
-	$model->printit();
+	$cntrl->drawGrid();
+
+	$cntrl->drawPiece($model->randPiece());
 
 ?>
+</div>
