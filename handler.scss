@@ -1,3 +1,9 @@
+$thickB: 4px solid;
+$thinB: 1px solid;
+
+$darkB: #6f6c15;
+$lightB: #aac039;
+
 body {
 	text-align: center;
 	margin: auto;
@@ -8,6 +14,10 @@ body {
 #stage {
 	position: relative;
 	margin: auto;
+	& * {
+		margin: inherit;
+		text-align: left;
+	}
 }
 
 #set {
@@ -29,4 +39,34 @@ body {
 	border-radius: 3px;
 	margin-left: -1px;
 	margin-top: -1px;
+}
+
+.single_piece {
+	position: absolute;
+	display: inline-block;
+	background-color: rgba(35,35,35,1);
+	opacity: 0.5;
+	width: 50px;
+	height: 50px;
+	&.x_plane {
+		-webkit-transform: skew(0, -26.57deg);
+		border-top: $thickB $lightB;
+		border-bottom: $thinB $darkB;
+		border-right: $thinB $darkB;
+		border-left: $thickB $lightB;
+	}
+	&.y_plane {
+		-webkit-transform: skew(-63.43deg, 26.57deg);
+		border-bottom: $thickB $lightB;
+		border-top: $thinB $darkB;
+		border-right: $thinB $darkB;
+		border-left: $thickB $lightB;
+	}
+	&.z_plane {
+		-webkit-transform: skew(0, 26.57deg);
+		border-top: $thickB $lightB;
+		border-bottom: $thinB $darkB;
+		border-left: $thinB $darkB;
+		border-right: $thickB $lightB;
+	}
 }

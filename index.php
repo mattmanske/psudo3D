@@ -7,6 +7,7 @@
 	}
 
 	include_once('objectModel.php');
+	include_once('pieceModel.php');
 	include_once('modelController.php');
 
 ?>

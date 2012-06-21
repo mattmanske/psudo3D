@@ -73,50 +73,61 @@ class riftController {
 	public function drawGrid(){
 		echo '<div id="stage" style="height:'.$this->dimensions['height'].'px; width:'.$this->dimensions['width'].'px;">';
 
-		for ($z = 0; $z <= $this->size; $z++):
-			for ($y = 0; $y <= $this->size; $y++):
-				for ($x = 0; $x <= $this->size; $x++):
-					if ($x == 0 || $y ==0 || $z ==0)
-						self::drawDot($x, $y, $z);
+	//	self:drawFloor();
+		echo '<div id="stage_dots">';
+			for ($z = 0; $z <= $this->size; $z++):
+				for ($y = 0; $y <= $this->size; $y++):
+					for ($x = 0; $x <= $this->size; $x++):
+						if ($x == 0 || $y ==0 || $z ==0)
+							self::drawDot($x, $y, $z);
+					endfor;
 				endfor;
 			endfor;
-		endfor;
+		echo '</div>';
 	}
 
 	public function drawDot($x, $y, $z, $class = ''){
 		$offset = self::offset($x, $y, $z);
-		echo '<div class="griddot '.$class.'" style="top:'.$offset['top'].'px; left:'.$offset['left'].'px"></div>';
+		echo '<div class="griddot '.$class.'" style="top:'.($offset['top']-2).'px; left:'.($offset['left']-2).'px"></div>';
 	}
 
 	public function drawPiece($piece){
-		$corners = self::parsePiece($piece);
-		foreach($corners as $corner):
+		$topValues = $leftValues = array();
+		foreach($piece->corners as $corner):
+			$offset = self::offset($corner[0], $corner[1], $corner[2]);
+			$topValues[] = $offset['top'];
+			$leftValues[] = $offset['left'];
+
 			self::drawDot($corner[0], $corner[1], $corner[2], 'piecedot');
 		endforeach;
-	}
 
-	public function parsePiece($piece){
-		if ($piece[0][0] == $piece[1][0]):		// X Plane
-			return array(
-				$piece[0], $piece[1],
-				array($piece[0][0], $piece[0][1], $piece[1][2]),
-				array($piece[0][0], $piece[1][1], $piece[0][2]),
-			);
-		elseif ($piece[0][1] == $piece[1][1]):	// Y Plane
-			return array(
-				$piece[0], $piece[1],
-				array($piece[0][0], $piece[0][1], $piece[1][2]),
-				array($piece[1][0], $piece[0][1], $piece[0][2]),
-			);
-		elseif ($piece[0][2] == $piece[1][2]):	// Z Plane
-			return array(
-				$piece[0], $piece[1],
-				array($piece[0][0], $piece[1][1], $piece[0][2]),
-				array($piece[1][0], $piece[0][1], $piece[0][2]),
-			);
-		else:
-			return false;
-		endif;
+		switch ($piece->plane):
+			case 'x':
+				$height = max($topValues) - min($topValues) - self::vert($this->spacing);
+				$width = max($leftValues) - min($leftValues);
+				$top = min($topValues) + self::vert($this->spacing / 2);
+				$left = min($leftValues);
+				break;
+			case 'y':
+				$height = $this->spacing;
+				$width = 100;
+				$top = min($topValues) + self::vert($this->spacing);
+				$left = min($leftValues) + self::vert($this->spacing);
+				break;
+			case 'z':
+				$height = max($topValues) - min($topValues) - (2 * self::vert($this->spacing));
+				$width = max($leftValues) - min($leftValues);
+				$top = min($topValues) + (2 * self::vert($this->spacing / 2));
+				$left = min($leftValues);
+				break;
+			default:
+				$width = $height = $top = $left = 0;
+		endswitch;
+
+		echo '<div class="single_piece '.$piece->plane.'_plane '.$piece->plane.'_row '.(true ? 'tall' : 'long').'"
+			style="top:'.$top.'px; left:'.$left.'px; height:'.$height.'px; width:'.$width.'px;"></div>';
+
+		print_nice(array(min($topValues), min($leftValues), $piece->plane));
 	}
 
 } ?>

@@ -6,6 +6,9 @@ body {
 #stage {
   position: relative;
   margin: auto; }
+  #stage * {
+    margin: inherit;
+    text-align: left; }
 
 #set {
   position: relative; }
@@ -24,3 +27,29 @@ body {
   border-radius: 3px;
   margin-left: -1px;
   margin-top: -1px; }
+
+.single_piece {
+  position: absolute;
+  display: inline-block;
+  background-color: #232323;
+  opacity: 0.5;
+  width: 50px;
+  height: 50px; }
+  .single_piece.x_plane {
+    -webkit-transform: skew(0, -26.57deg);
+    border-top: 4px solid #aac039;
+    border-bottom: 3px solid #6f6c15;
+    border-left: 3px solid #6f6c15;
+    border-right: 4px solid #aac039; }
+  .single_piece.y_plane {
+    -webkit-transform: skew(-63.43deg, 26.57deg);
+    border-bottom: 4px solid #aac039;
+    border-top: 3px solid #6f6c15;
+    border-right: 3px solid #6f6c15;
+    border-left: 4px solid #aac039; }
+  .single_piece.z_plane {
+    -webkit-transform: skew(0, 26.57deg);
+    border-top: 4px solid #aac039;
+    border-bottom: 3px solid #6f6c15;
+    border-left: 3px solid #6f6c15;
+    border-right: 4px solid #aac039; }
