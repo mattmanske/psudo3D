@@ -13,22 +13,22 @@ class singlePiece {
 	}
 
 	public function findCorners($p){
-		$this->corners = array($p[0], $p[1]);
 
 		if ($p[0][0] == $p[1][0]):
 			$this->plane = 'x';
 			$this->row = $p[0][0];
-			array_push($this->corners, array($p[0][0], $p[0][1], $p[1][2]), array($p[0][0], $p[1][1], $p[0][2]));
+			$this->corners = array(array($p[0][0], $p[0][1], $p[1][2]), $p[0], array($p[0][0], $p[1][1], $p[0][2]), $p[1]);
 		elseif ($p[0][1] == $p[1][1]):
 			$this->plane = 'y';
 			$this->row = $p[0][1];
-			array_push($this->corners, array($p[0][0], $p[0][1], $p[1][2]), array($p[1][0], $p[0][1], $p[0][2]));
+			$this->corners = array(array($p[0][0], $p[0][1], $p[1][2]), $p[0], array($p[1][0], $p[0][1], $p[0][2]), $p[1]);
 		elseif ($p[0][2] == $p[1][2]):
 			$this->plane = 'z';
 			$this->row = $p[0][2];
-			array_push($this->corners, array($p[0][0], $p[1][1], $p[0][2]), array($p[1][0], $p[0][1], $p[0][2]));
+			$this->corners = array(array($p[0][0], $p[1][1], $p[0][2]), $p[0], array($p[1][0], $p[0][1], $p[0][2]), $p[1]);
 		else:
 			$this->corners = false;
 		endif;
+
 	}
 }

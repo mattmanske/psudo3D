@@ -16,8 +16,8 @@ class riftController {
         $this->orientation = $orientation;
 
         $this->center = array(
-        	'v'	=> ((($this->size * 2) * $this->spacing) * self::vert()),
-        	'h'	=> ((($this->size * 2) * $this->spacing) * self::horz()) / 2,
+        	'v'	=> ((($this->size * 2) * $this->spacing) * self::vert()) + 10,
+        	'h'	=> ((($this->size * 2) * $this->spacing) * self::horz()) / 2 + 10,
         );
         $this->dimensions = array(
         	'height'	=> ($this->center['v'] * 2) + 3,
@@ -71,7 +71,8 @@ class riftController {
     }
 
 	public function drawGrid(){
-		echo '<div id="stage" style="height:'.$this->dimensions['height'].'px; width:'.$this->dimensions['width'].'px;">';
+		echo '<canvas id="stage" height="'.$this->dimensions['height'].'" width="'.$this->dimensions['width'].'"></canvas>';
+		echo '<div id="canvas-info">';
 
 	//	self:drawFloor();
 		echo '<div id="stage_dots">';
@@ -86,13 +87,28 @@ class riftController {
 		echo '</div>';
 	}
 
-	public function drawDot($x, $y, $z, $class = ''){
+	public function drawDot($x, $y, $z, $class = 'griddot'){
 		$offset = self::offset($x, $y, $z);
-		echo '<div class="griddot '.$class.'" style="top:'.($offset['top']-2).'px; left:'.($offset['left']-2).'px"></div>';
+		if ($x == 0 && $y == 0 && $z == 0):
+			$id = 'center_dot';
+		elseif ($x == $this->size && $y == 0 && $z == 0):
+			$id = 'x_edge';
+			$class = $class.' edge';
+		elseif ($y == $this->size && $x == 0 && $z == 0):
+			$id = 'y_edge';
+			$class = $class.' edge';
+		elseif ($z == $this->size && $y == 0 && $x == 0):
+			$id = 'z_edge';
+			$class = $class.' edge';
+		endif;
+
+		echo '<div class="pt '.$class.'" id="'.$id.'" style="top:'.($offset['top']-2).'px; left:'.($offset['left']-2).'px"></div>';
 	}
 
 	public function drawPiece($piece){
 		$topValues = $leftValues = array();
+
+		echo '<div class="piece">';
 		foreach($piece->corners as $corner):
 			$offset = self::offset($corner[0], $corner[1], $corner[2]);
 			$topValues[] = $offset['top'];
@@ -100,6 +116,7 @@ class riftController {
 
 			self::drawDot($corner[0], $corner[1], $corner[2], 'piecedot');
 		endforeach;
+		echo '</div>';
 
 		switch ($piece->plane):
 			case 'x':
@@ -124,10 +141,10 @@ class riftController {
 				$width = $height = $top = $left = 0;
 		endswitch;
 
-		echo '<div class="single_piece '.$piece->plane.'_plane '.$piece->plane.'_row '.(true ? 'tall' : 'long').'"
-			style="top:'.$top.'px; left:'.$left.'px; height:'.$height.'px; width:'.$width.'px;"></div>';
+		// echo '<div class="single_piece '.$piece->plane.'_plane '.$piece->plane.'_row '.(true ? 'tall' : 'long').'"
+		//	style="top:'.$top.'px; left:'.$left.'px; height:'.$height.'px; width:'.$width.'px;"></div>';
 
-		print_nice(array(min($topValues), min($leftValues), $piece->plane));
+		// print_nice(array(min($topValues), min($leftValues), $piece->plane));
 	}
 
 } ?>

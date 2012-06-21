@@ -7,7 +7,7 @@ class riftObject {
 		$plane = array_rand($spaces, 1);
 		$start1 = rand(0, $max);
 		$start2 = rand(0, $max);
-		$static = rand(0, $max);
+		$static = 0; //rand(0, $max);
 
 		$adders = array(1, 2);
 		shuffle($adders);

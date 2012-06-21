@@ -1,6 +1,6 @@
 <?php // Stage Setup
 	$model = new riftObject();
-	$cntrl = new riftController(4, 55);
+	$cntrl = new riftController(6, 35);
 
 	$cntrl->drawGrid();
 
@@ -11,6 +11,3 @@
 
 ?>
 </div>
-
-<div style="width:40px; height:60px; -webkit-transform: skew(0, -24deg); background:red"></div>
-

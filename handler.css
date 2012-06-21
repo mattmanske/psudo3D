@@ -3,53 +3,45 @@ body {
   margin: auto; }
 
 /* Stage/Grid Setup */
-#stage {
-  position: relative;
-  margin: auto; }
-  #stage * {
-    margin: inherit;
-    text-align: left; }
-
-#set {
-  position: relative; }
+#canvas-info {
+  display: none; }
 
 .griddot {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.33);
-  width: 2px;
-  height: 2px;
-  border-radius: 3px; }
+  position: absolute; }
 
 .piecedot {
-  background-color: red;
-  width: 4px;
-  height: 4px;
-  border-radius: 3px;
-  margin-left: -1px;
-  margin-top: -1px; }
+  position: absolute; }
 
+/*
 .single_piece {
-  position: absolute;
-  display: inline-block;
-  background-color: #232323;
-  opacity: 0.5;
-  width: 50px;
-  height: 50px; }
-  .single_piece.x_plane {
-    -webkit-transform: skew(0, -26.57deg);
-    border-top: 4px solid #aac039;
-    border-bottom: 3px solid #6f6c15;
-    border-left: 3px solid #6f6c15;
-    border-right: 4px solid #aac039; }
-  .single_piece.y_plane {
-    -webkit-transform: skew(-63.43deg, 26.57deg);
-    border-bottom: 4px solid #aac039;
-    border-top: 3px solid #6f6c15;
-    border-right: 3px solid #6f6c15;
-    border-left: 4px solid #aac039; }
-  .single_piece.z_plane {
-    -webkit-transform: skew(0, 26.57deg);
-    border-top: 4px solid #aac039;
-    border-bottom: 3px solid #6f6c15;
-    border-left: 3px solid #6f6c15;
-    border-right: 4px solid #aac039; }
+	position: absolute;
+	display: inline-block;
+	background-color: transparent;
+	background-image: url(assets/bgfill.png);
+	background-size: cover;
+	opacity: 0.5;
+	width: 50px;
+	height: 50px;
+	&.x_plane {
+		-webkit-transform: skew(0, -26.57deg);
+		border-top: $thickB $lightB;
+		border-bottom: $thinB $darkB;
+		border-right: $thinB $darkB;
+		border-left: $thickB $lightB;
+	}
+	&.y_plane {
+		-webkit-transform: skew(-63.43deg, 26.57deg);
+		border-bottom: $thickB $lightB;
+		border-top: $thinB $darkB;
+		border-left: $thinB $darkB;
+		border-right: $thickB $lightB;
+	}
+	&.z_plane {
+		-webkit-transform: skew(0, 26.57deg);
+		border-top: $thickB $lightB;
+		border-bottom: $thinB $darkB;
+		border-left: $thinB $darkB;
+		border-right: $thickB $lightB;
+	}
+}
+*/
