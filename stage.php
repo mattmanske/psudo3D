@@ -1,6 +1,6 @@
 <?php // Stage Setup
 	$model = new riftObject();
-	$cntrl = new riftController(6, 35);
+	$cntrl = new riftController(4, 65);
 
 	$cntrl->drawGrid();
 

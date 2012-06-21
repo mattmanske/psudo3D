@@ -140,11 +140,11 @@ class riftController {
 			default:
 				$width = $height = $top = $left = 0;
 		endswitch;
+/*
+		echo '<div class="single_piece '.$piece->plane.'_plane '.$piece->plane.'_row '.(true ? 'tall' : 'long').'"
+			style="top:'.$top.'px; left:'.$left.'px; height:'.$height.'px; width:'.$width.'px;"></div>';
 
-		// echo '<div class="single_piece '.$piece->plane.'_plane '.$piece->plane.'_row '.(true ? 'tall' : 'long').'"
-		//	style="top:'.$top.'px; left:'.$left.'px; height:'.$height.'px; width:'.$width.'px;"></div>';
-
-		// print_nice(array(min($topValues), min($leftValues), $piece->plane));
-	}
+		print_nice(array(min($topValues), min($leftValues), $piece->plane));
+*/	}
 
 } ?>
