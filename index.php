@@ -17,10 +17,10 @@
 	<head>
 		<title>3D Modeler</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="stylesheet" type="text/css" href="handler.css" />
+		<link rel="stylesheet" type="text/css" href="scripts/handler.css" />
 		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
-		<script type="text/javascript" src="jcanvas.min.js" ></script>
-		<script type="text/javascript" src="script.js" ></script>
+		<script type="text/javascript" src="scripts/jcanvas.min.js" ></script>
+		<script type="text/javascript" src="scripts/script.js" ></script>
 	</head>
 	<body>
 		<h1>3D Modeler</h1>
