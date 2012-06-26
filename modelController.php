@@ -26,15 +26,15 @@ class riftController {
         switch ($orientation):
         	case 'back':
         		$this->multiplier = array(
-        			'x' => array('v' => self::vert(1),	'h' => self::horz(1)),
+        			'x' => array('v' => self::vert(1),	'h' => self::horz(-1)),
         			'y' => array('v' => -1,				'h' => 0),
-        			'z' => array('v' => self::vert(1),	'h' => self::horz(-1)));
+        			'z' => array('v' => self::vert(-1),	'h' => self::horz(-1)));
         		break;
         	case 'side':
         		$this->multiplier = array(
-        			'x' => array('v' => self::vert(1),	'h' => self::horz(1)),
+        			'x' => array('v' => self::vert(-1),	'h' => self::horz(1)),
         			'y' => array('v' => -1,				'h' => 0),
-        			'z' => array('v' => self::vert(1),	'h' => self::horz(-1)));
+        			'z' => array('v' => self::vert(1),	'h' => self::horz(1)));
         		break;
         	case 'bottom':
         		$this->multiplier = array(
@@ -72,7 +72,7 @@ class riftController {
 
 	public function drawGrid(){
 		echo '<canvas id="stage" height="'.$this->dimensions['height'].'" width="'.$this->dimensions['width'].'"></canvas>';
-		echo '<div id="canvas-info">';
+		echo '<div id="canvas-info" view="'.$this->orientation.'">';
 
 	//	self:drawFloor();
 		echo '<div id="stage_dots">';
@@ -87,28 +87,28 @@ class riftController {
 		echo '</div>';
 	}
 
-	public function drawDot($x, $y, $z, $class = 'griddot'){
+	public function drawDot($x, $y, $z, $class = 'griddot', $string = ''){
 		$offset = self::offset($x, $y, $z);
 		if ($x == 0 && $y == 0 && $z == 0):
-			$id = 'center_dot';
+			$string = 'id="center_dot"';
 		elseif ($x == $this->size && $y == 0 && $z == 0):
-			$id = 'x_edge';
+			$string = 'id="x_edge"';
 			$class = $class.' edge';
 		elseif ($y == $this->size && $x == 0 && $z == 0):
-			$id = 'y_edge';
+			$string = 'id="y_edge"';
 			$class = $class.' edge';
 		elseif ($z == $this->size && $y == 0 && $x == 0):
-			$id = 'z_edge';
+			$string = 'id="z_edge"';
 			$class = $class.' edge';
 		endif;
 
-		echo '<div class="pt '.$class.'" id="'.$id.'" style="top:'.($offset['top']-2).'px; left:'.($offset['left']-2).'px"></div>';
+		echo '<div class="pt '.$class.'" '.$string.' style="top:'.($offset['top']-2).'px; left:'.($offset['left']-2).'px"></div>';
 	}
 
 	public function drawPiece($piece){
 		$topValues = $leftValues = array();
 
-		echo '<div class="piece">';
+		echo '<div class="piece" plane="'.$piece->plane.$piece->row.'">';
 		foreach($piece->corners as $corner):
 			$offset = self::offset($corner[0], $corner[1], $corner[2]);
 			$topValues[] = $offset['top'];

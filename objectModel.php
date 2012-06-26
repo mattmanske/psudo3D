@@ -28,4 +28,15 @@ class riftObject {
 
 		return ($ray ? new singlePiece($ray) : false);
 	}
+
+	public function driftBox(){
+		return array(
+			new singlePiece(array(array(0,0,0), array(2,0,1), 1)),
+			new singlePiece(array(array(0,2,0), array(2,2,1), 1)),
+			new singlePiece(array(array(0,0,0), array(0,2,1), 1)),
+			new singlePiece(array(array(2,0,0), array(2,2,1), 1)),
+			new singlePiece(array(array(0,0,0), array(2,1,0), 1)),
+		);
+	}
+
 } ?>
